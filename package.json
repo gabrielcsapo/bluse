@@ -1,0 +1,33 @@
+{
+  "name": "bluse",
+  "version": "0.0.0",
+  "description": "⚗️ blend and fuse data with ease",
+  "author": "Gabriel J. Csapo <gabecsapo@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielcsapo/bluse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gabrielcsapo/bluse/issues"
+  },
+  "homepage": "https://github.com/gabrielcsapo/bluse#readme",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "tape test",
+    "build": "browserify -r ./index.js:bluse > dist/bluse.js;",
+    "coverage": "tap test --coverage --coverage-report=lcov",
+    "generate-example": "tryitout"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "eslint": "^4.7.0",
+    "tap": "^10.7.2",
+    "tape": "^4.8.0",
+    "tryitout": "^0.1.4"
+  }
+}
