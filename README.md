@@ -7,8 +7,8 @@
 [![Coverage Status](https://lcov-server.herokuapp.com/badge/github%2Ecom/gabrielcsapo/monotime.svg)](https://lcov-server.herokuapp.com/coverage/github%2Ecom/gabrielcsapo/monotime)
 [![Dependency Status](https://david-dm.org/gabrielcsapo/bluse.svg)](https://david-dm.org/gabrielcsapo/bluse)
 [![devDependency Status](https://david-dm.org/gabrielcsapo/bluse/dev-status.svg)](https://david-dm.org/gabrielcsapo/bluse#info=devDependencies)
-[![npm](https://img.shields.io/npm/dt/bluse.svg)]()
-[![npm](https://img.shields.io/npm/dm/bluse.svg)]()
+[![npm](https://img.shields.io/npm/dt/bluse.svg)](https://github.com/gabrielcsapo/bluse)
+[![npm](https://img.shields.io/npm/dm/bluse.svg)](https://github.com/gabrielcsapo/bluse)
 
 ## Installation
 
@@ -93,7 +93,7 @@ const data = [{
   }]
 }];
 
-bluse(data);
+bluse(data, { unique: true }); // the default is false
 ```
 
 Now that you have `blused` your data! It should look like the following:

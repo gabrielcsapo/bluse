@@ -37,7 +37,13 @@ function parser(data, pk) {
   return struct;
 }
 
-module.exports = (data) => {
+function fUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
+module.exports = (data, options={}) => {
+  const { unique=false } = options;
+
   if(Array.isArray(data)) {
     let agr = {};
     const ret = data.map((d) => parser(d));
@@ -45,12 +51,24 @@ module.exports = (data) => {
     ret.forEach((r) => {
       Object.keys(r).forEach((k) => {
         if(agr[k]) {
-          agr[k] = agr[k].concat(r[k]);
+          if(unique) {
+            agr[k] = agr[k].concat(r[k]).filter(fUnique);
+          } else {
+            agr[k] = agr[k].concat(r[k]);
+          }
         } else {
           if(Array.isArray(r[k])) {
-            agr[k] = r[k];
+            if(unique) {
+              agr[k] = r[k].filter(fUnique);
+            } else {
+              agr[k] = r[k];
+            }
           } else {
-            agr[k] = [r[k]];
+            if(unique) {
+              agr[k] = [r[k]].filter(fUnique);
+            } else {
+              agr[k] = [r[k]]
+            }
           }
         }
       })

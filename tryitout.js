@@ -184,6 +184,66 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data), null, 4));
       `
+    }, {
+      type: 'code',
+      title: 'Bluse an array of complex objects and get back unique values 🔬',
+      value: `
+        const bluse = require('bluse');
+
+        const data = [{
+          name: "json-ex",
+          tags: ['nodejs', 'utility', 'npm', 'json'],
+          contributors: [{
+            name: 'Gabriel J. Csapo'
+          }],
+          doesNotExistElsewhere: 'hello world',
+          description: "Extends JSON to be able to serialize and deserialize more than just basic primitives.",
+          package: {
+            directDependencies: 45,
+            totalDependencies: 803,
+            resolveDependencies: [
+              'moment@1.0.2',
+              'tape@4.0.2'
+            ]
+          },
+          builds: [{
+            start: 1235,
+            end: 12345,
+            name: 'build1'
+          }, {
+            start: 1235,
+            end: 12345,
+            name: 'build2'
+          }]
+        }, {
+          name: "bluse",
+          tags: ['nodejs', 'utility', 'npm'],
+          contributors: [{
+            name: 'Gabriel J. Csapo'
+          }],
+          description: "⚗️ blend and fuse data",
+          package: {
+            directDependencies: 3,
+            totalDependencies: 1093,
+            resolveDependencies: [
+              'moment@2.0.2',
+              'tape@10.0.2',
+              'tap@11.0.2'
+            ]
+          },
+          builds: [{
+            start: 1235,
+            end: 12345,
+            name: 'build3'
+          }, {
+            start: 1235,
+            end: 12345,
+            name: 'build4'
+          }]
+        }];
+
+        console.log(JSON.stringify(bluse(data, { unique: true }), null, 4));
+      `
     }],
     output: "./docs",
     externals: [

@@ -3,7 +3,7 @@ const test = require('tape');
 const bluse = require('../index');
 
 test('bluse', (t) => {
-  t.plan(4);
+  t.plan(5);
 
   t.test('@object should flatten object', (t) => {
     const data = {
@@ -244,5 +244,76 @@ test('bluse', (t) => {
 
     t.end();
   });
+
+  t.test('@mixed should only return unique values', (t) => {
+    const data = [{
+      name: "json-ex",
+      tags: ['nodejs', 'utility', 'npm', 'json', 'unique'],
+      contributors: [{
+        name: 'Gabriel J. Csapo'
+      }],
+      doesNotExistElsewhere: 'hello world',
+      description: "Extends JSON to be able to serialize and deserialize more than just basic primitives.",
+      package: {
+        directDependencies: 45,
+        totalDependencies: 803,
+        resolveDependencies: [
+          'moment@1.0.2',
+          'tape@4.0.2'
+        ]
+      },
+      builds: [{
+        start: 1235,
+        end: 12345,
+        name: 'build1'
+      }, {
+        start: 1235,
+        end: 12345,
+        name: 'build2'
+      }]
+    }, {
+      name: "bluse",
+      tags: ['nodejs', 'utility', 'npm'],
+      contributors: [{
+        name: 'Gabriel J. Csapo'
+      }],
+      description: "⚗️ blend and fuse data with ease",
+      package: {
+        directDependencies: 3,
+        totalDependencies: 1093,
+        resolveDependencies: [
+          'moment@2.0.2',
+          'tape@10.0.2',
+          'tap@11.0.2'
+        ]
+      },
+      builds: [{
+        start: 1235,
+        end: 12345,
+        name: 'build3'
+      }, {
+        start: 1235,
+        end: 12345,
+        name: 'build4'
+      }]
+    }];
+
+    t.deepEqual(bluse(data, {
+      unique: true
+    }), {
+      "name": ["json-ex", "bluse"],
+      "tags": ["nodejs", "utility", "npm", "json", "unique"],
+      "contributors:name": ["Gabriel J. Csapo"],
+      "doesNotExistElsewhere": ["hello world"],
+      "description": ["Extends JSON to be able to serialize and deserialize more than just basic primitives.", "⚗️ blend and fuse data with ease"],
+      "package:directDependencies": [45, 3],
+      "package:totalDependencies": [803, 1093],
+      "package:resolveDependencies": ["moment@1.0.2", "tape@4.0.2", "moment@2.0.2", "tape@10.0.2", "tap@11.0.2"],
+      "builds:start": [1235],
+      "builds:end": [12345],
+      "builds:name": ["build1", "build2", "build3", "build4"]
+    });
+    t.end();
+  })
 
 });
