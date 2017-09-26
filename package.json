@@ -16,7 +16,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "tape test",
-    "build": "browserify -r ./index.js:bluse > dist/bluse.js;",
+    "build": "browserify -r ./index.js:bluse > dist/bluse.js;browserify -r ./index.js:bluse | uglifyjs > dist/bluse.min.js;",
     "coverage": "tap test --coverage --coverage-report=lcov",
     "generate-example": "tryitout"
   },
@@ -28,6 +28,7 @@
     "eslint": "^4.7.0",
     "tap": "^10.7.2",
     "tape": "^4.8.0",
-    "tryitout": "^0.1.4"
+    "tryitout": "^0.1.4",
+    "uglify-es": "^3.1.2"
   }
 }

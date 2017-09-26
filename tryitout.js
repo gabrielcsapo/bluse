@@ -247,6 +247,6 @@ module.exports = {
     }],
     output: "./docs",
     externals: [
-      "./dist/bluse.js"
+      "./dist/bluse.min.js"
     ]
 }
