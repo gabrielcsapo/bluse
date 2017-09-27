@@ -244,6 +244,30 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data, { unique: true }), null, 4));
       `
+    }, {
+      type: 'code',
+      title: 'Bluse an object with nested mixed array types 🔬',
+      value: `
+        const bluse = require('bluse');
+
+        const data = {
+          foo: ['echo $FOO'],
+          bar: ['bar', {
+            barfoo: []
+          }],
+          install: ['npm --version', 'node --version', {
+            npm: ['npm install', {
+              list: ['ls -lh']
+            }]
+          }],
+          lint: ['npm run lint'],
+          coverage: ['npm run coverage'],
+          test: ['npm test'],
+          docs: ['npm run generate-docs']
+        };
+
+        console.log(JSON.stringify(bluse(data), null, 4));
+      `
     }],
     output: "./docs",
     externals: [

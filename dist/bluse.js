@@ -4,9 +4,19 @@ function parser(data, pk) {
 
   Object.keys(data).forEach((k) => {
     if(Array.isArray(data[k]) == true) {
-      if(typeof data[k][0] == 'object') {
+      let objects = [];
+      let flat = [];
+      data[k].forEach((o) => {
+        if(typeof o === 'object') {
+          objects.push(o);
+        } else {
+          flat.push(o);
+        }
+      });
+
+      if(objects.length > 0) {
         // if this array contains objects, parse them accordingly
-        var na = data[k].map((sd) => parser(sd, pk ? `${pk}:${k}` : k));
+        var na = objects.map((sd) => parser(sd, pk ? `${pk}:${k}` : k));
         na.forEach((n, i) => {
           Object.keys(n).forEach((a) => {
             // the key is since we have already run the parser on the data
@@ -22,10 +32,10 @@ function parser(data, pk) {
             }
           });
         });
-      } else {
-        // if this is a flat array, just put the data back
-        struct[pk ? `${pk}:${k}` : k] = data[k];
       }
+      // if this is a flat array, just put the data back
+      struct[pk ? `${pk}:${k}` : k] = flat;
+
     } else if(typeof data[k] == 'object') {
       Object.assign(struct, parser(data[k], pk ? `${pk}:${k}` : k));
     } else {

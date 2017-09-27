@@ -3,7 +3,7 @@ const test = require('tape');
 const bluse = require('../index');
 
 test('bluse', (t) => {
-  t.plan(5);
+  t.plan(7);
 
   t.test('@object should flatten object', (t) => {
     const data = {
@@ -39,7 +39,8 @@ test('bluse', (t) => {
       'package:resolveDependencies': ['moment@2.0.2', 'tape@10.0.2', 'tap@11.0.2'],
       'builds:start': [1235, 1235],
       'builds:end': [12345, 12345],
-      'builds:name': ['build3', 'build4']
+      'builds:name': ['build3', 'build4'],
+      builds: []
     });
     t.end();
   })
@@ -101,6 +102,7 @@ test('bluse', (t) => {
       name: ['json-ex', 'bluse'],
       tags: ['nodejs', 'utility', 'npm', 'json', 'nodejs', 'utility', 'npm'],
       'contributors:name': ['Gabriel J. Csapo', 'Gabriel J. Csapo'],
+      contributors: [],
       doesNotExistElsewhere: ['hello world'],
       description: ['Extends JSON to be able to serialize and deserialize more than just basic primitives.', '⚗️ blend and fuse data with ease'],
       'package:directDependencies': [45, 3],
@@ -108,7 +110,8 @@ test('bluse', (t) => {
       'package:resolveDependencies': ['moment@1.0.2', 'tape@4.0.2', 'moment@2.0.2', 'tape@10.0.2', 'tap@11.0.2'],
       'builds:start': [1235, 1235, 1235, 1235],
       'builds:end': [12345, 12345, 12345, 12345],
-      'builds:name': ['build1', 'build2', 'build3', 'build4']
+      'builds:name': ['build1', 'build2', 'build3', 'build4'],
+      builds: []
     });
     t.end();
   });
@@ -194,7 +197,9 @@ test('bluse', (t) => {
       'builds:steps:dependencies': ['moment@1.0.2', 'kraken-js@2.0.1', 'tape@4.0.2', 'moment@2.0.2', 'kraken-js@2.0.1', 'tape@10.0.2', 'tap@11.0.2'],
       'builds:steps:code': [0, 1, 0, 0, 0],
       'builds:steps:start': [1, 2, 1, 2, 2],
-      'builds:steps:end': [34133, 12, 34123, 1256, 123456]
+      'builds:steps:end': [34133, 12, 34123, 1256, 123456],
+      'builds:steps': [],
+      builds: []
     });
     t.end();
   });
@@ -239,7 +244,8 @@ test('bluse', (t) => {
     t.deepEqual(bluse(data), {
       'account:person:name:history:date': [123456, 654321],
       'account:person:family:age': [50, 28, 40, 32],
-      'account:person:family:name': ['Bob', 'Susan', 'Diane', 'Alfred']
+      'account:person:family:name': ['Bob', 'Susan', 'Diane', 'Alfred'],
+      'account:person:family': []
     });
 
     t.end();
@@ -301,19 +307,72 @@ test('bluse', (t) => {
     t.deepEqual(bluse(data, {
       unique: true
     }), {
-      "name": ["json-ex", "bluse"],
-      "tags": ["nodejs", "utility", "npm", "json", "unique"],
-      "contributors:name": ["Gabriel J. Csapo"],
-      "doesNotExistElsewhere": ["hello world"],
-      "description": ["Extends JSON to be able to serialize and deserialize more than just basic primitives.", "⚗️ blend and fuse data with ease"],
-      "package:directDependencies": [45, 3],
-      "package:totalDependencies": [803, 1093],
-      "package:resolveDependencies": ["moment@1.0.2", "tape@4.0.2", "moment@2.0.2", "tape@10.0.2", "tap@11.0.2"],
-      "builds:start": [1235],
-      "builds:end": [12345],
-      "builds:name": ["build1", "build2", "build3", "build4"]
+      name: ['json-ex', 'bluse'],
+      tags: ['nodejs', 'utility', 'npm', 'json', 'unique'],
+      'contributors:name': ['Gabriel J. Csapo'],
+      contributors: [],
+      doesNotExistElsewhere: ['hello world'],
+      description: ['Extends JSON to be able to serialize and deserialize more than just basic primitives.', '⚗️ blend and fuse data with ease'],
+      'package:directDependencies': [45, 3],
+      'package:totalDependencies': [803, 1093],
+      'package:resolveDependencies': ['moment@1.0.2', 'tape@4.0.2', 'moment@2.0.2', 'tape@10.0.2', 'tap@11.0.2'],
+      'builds:start': [1235],
+      'builds:end': [12345],
+      'builds:name': ['build1', 'build2', 'build3', 'build4'],
+      builds: []
     });
     t.end();
-  })
+  });
+
+  t.test('@mixed should be able to handled mixed arrays', (t) => {
+    var data = {
+      foo: ['echo $FOO'],
+      install: ['npm --version', 'node --version', {
+        npm: []
+      }],
+      lint: ['npm run lint'],
+      coverage: ['npm run coverage'],
+      test: ['npm test'],
+      docs: ['npm run generate-docs']
+    };
+
+    t.deepEqual(bluse(data), {
+      foo: ['echo $FOO'],
+      'install:npm': [],
+      install: ['npm --version', 'node --version'],
+      lint: ['npm run lint'],
+      coverage: ['npm run coverage'],
+      test: ['npm test'],
+      docs: ['npm run generate-docs']
+    });
+    t.end();
+  });
+
+  t.test('@mixed should be able to handled mixed arrays nested inside mixed arrays', (t) => {
+    var data = {
+      foo: ['echo $FOO'],
+      install: ['npm --version', 'node --version', {
+        npm: ['npm install', {
+          list: ['ls -lh']
+        }]
+      }],
+      lint: ['npm run lint'],
+      coverage: ['npm run coverage'],
+      test: ['npm test'],
+      docs: ['npm run generate-docs']
+    };
+
+    t.deepEqual(bluse(data), {
+      foo: ['echo $FOO'],
+      'install:npm:list': ['ls -lh'],
+      'install:npm': ['npm install'],
+      install: ['npm --version', 'node --version'],
+      lint: ['npm run lint'],
+      coverage: ['npm run coverage'],
+      test: ['npm test'],
+      docs: ['npm run generate-docs']
+    });
+    t.end();
+  });
 
 });
