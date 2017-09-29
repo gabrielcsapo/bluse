@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "browserify": "^14.4.0",
-    "eslint": "^4.7.0",
+    "eslint": "^4.7.2",
     "tap": "^10.7.2",
     "tape": "^4.8.0",
-    "tryitout": "^0.1.4",
+    "tryitout": "^0.2.0",
     "uglify-es": "^3.1.2"
   }
 }

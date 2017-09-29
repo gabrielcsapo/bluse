@@ -1,7 +1,9 @@
 module.exports = {
     title: "bluse",
     description: "Generating data is hard enough, combining it should be easy ⚗️",
-    source: "https://github.com/gabrielcsapo/bluse",
+    nav: {
+      Source: "https://github.com/gabrielcsapo/bluse"
+    },
     options: {
       width: '90%'
     },
