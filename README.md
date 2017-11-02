@@ -4,7 +4,7 @@
 
 [![Npm Version](https://img.shields.io/npm/v/bluse.svg)](https://www.npmjs.com/package/bluse)
 [![Build Status](https://travis-ci.org/gabrielcsapo/bluse.svg?branch=master)](https://travis-ci.org/gabrielcsapo/bluse)
-[![Coverage Status](https://lcov-server.gabrielcsapo.com/badge/github%2Ecom/gabrielcsapo/monotime.svg)](https://lcov-server.gabrielcsapo.com/coverage/github%2Ecom/gabrielcsapo/monotime)
+[![Coverage Status](https://lcov-server.gabrielcsapo.com/badge/github%2Ecom/gabrielcsapo/bluse.svg)](https://lcov-server.gabrielcsapo.com/coverage/github%2Ecom/gabrielcsapo/bluse)
 [![Dependency Status](https://starbuck.gabrielcsapo.com/badge/github/gabrielcsapo/bluse/status.svg)](https://starbuck.gabrielcsapo.com/github/gabrielcsapo/bluse)
 [![devDependency Status](https://starbuck.gabrielcsapo.com/badge/github/gabrielcsapo/bluse/dev-status.svg)](https://starbuck.gabrielcsapo.com/github/gabrielcsapo/bluse#info=devDependencies)
 [![npm](https://img.shields.io/npm/dt/bluse.svg)](https://github.com/gabrielcsapo/bluse)
