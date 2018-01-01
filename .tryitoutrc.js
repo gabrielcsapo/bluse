@@ -1,25 +1,25 @@
 module.exports = {
-    title: "bluse",
-    description: "Generating data is hard enough, combining it should be easy ⚗️",
-    nav: {
-      Source: "https://github.com/gabrielcsapo/bluse"
-    },
-    options: {
-      width: '90%'
-    },
-    body: [{
-      type: "html",
-      value: `
+  title: "bluse",
+  description: "Generating data is hard enough, combining it should be easy ⚗️",
+  nav: {
+    Source: "https://github.com/gabrielcsapo/bluse"
+  },
+  options: {
+    width: '90%'
+  },
+  body: [{
+    type: "html",
+    value: `
         <div style="text-align:center;">
           <blockquote style="display:inline-block;">
             <a href="https://github.com/gabrielcsapo/bluse"><code>bluse</code></a> ⚗️ blend and fuse data with ease
           </blockquote>
         </div>
       `
-    }, {
-      type: "code",
-      title: "Bluse a simple object 😉",
-      value: `
+  }, {
+    type: "code",
+    title: "Bluse a simple object 😉",
+    value: `
         const bluse = require('bluse');
 
         const data = {
@@ -48,10 +48,10 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data), null, 4));
       `
-    }, {
-      type: 'code',
-      title: 'Bluse an array of complex objects 🔬',
-      value: `
+  }, {
+    type: 'code',
+    title: 'Bluse an array of complex objects 🔬',
+    value: `
         const bluse = require('bluse');
 
         const data = [{
@@ -108,10 +108,10 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data), null, 4));
       `
-    }, {
-      type: 'code',
-      title: 'Bluse an array of EXTREMELY complex objects 🔬',
-      value: `
+  }, {
+    type: 'code',
+    title: 'Bluse an array of EXTREMELY complex objects 🔬',
+    value: `
         const bluse = require('bluse');
 
         const data = [{
@@ -186,10 +186,10 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data), null, 4));
       `
-    }, {
-      type: 'code',
-      title: 'Bluse an array of complex objects and get back unique values 🔬',
-      value: `
+  }, {
+    type: 'code',
+    title: 'Bluse an array of complex objects and get back unique values 🔬',
+    value: `
         const bluse = require('bluse');
 
         const data = [{
@@ -246,10 +246,10 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data, { unique: true }), null, 4));
       `
-    }, {
-      type: 'code',
-      title: 'Bluse an object with nested mixed array types 🔬',
-      value: `
+  }, {
+    type: 'code',
+    title: 'Bluse an object with nested mixed array types 🔬',
+    value: `
         const bluse = require('bluse');
 
         const data = {
@@ -270,9 +270,10 @@ module.exports = {
 
         console.log(JSON.stringify(bluse(data), null, 4));
       `
-    }],
-    output: "./docs",
-    externals: [
-      "./dist/bluse.min.js"
-    ]
+  }],
+  template: 'code',
+  output: "./docs",
+  externals: [
+    "./dist/bluse.min.js"
+  ]
 }
