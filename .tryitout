@@ -5,7 +5,7 @@ module.exports = {
     Source: "https://github.com/gabrielcsapo/bluse"
   },
   options: {
-    width: '90%'
+    width: '65%'
   },
   body: [{
     type: "html",
